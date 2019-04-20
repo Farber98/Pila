@@ -104,12 +104,15 @@ public class Principal
     public static boolean estaContenida(Pila unaPila, Pila otraPila)        //Otra pila contenida en pila?.
     {
         int coincidencias = 0;
-        while(!otraPila.esVacia() && !unaPila.esVacia())
+        while(!unaPila.esVacia())
         {
-            if(unaPila.inicio.getDato() == otraPila.inicio.getDato() )
-                coincidencias++;
+            while(!otraPila.esVacia())
+            {   
+                if(unaPila.inicio.getDato() == otraPila.inicio.getDato() )
+                    coincidencias++;
+                otraPila.inicio = otraPila.inicio.getSiguiente();
+            }
             unaPila.inicio = unaPila.inicio.getSiguiente();
-            otraPila.inicio = otraPila.inicio.getSiguiente();
         }
         if(coincidencias == otraPila.cantidad)
             return true;
